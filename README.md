@@ -1,6 +1,6 @@
 # unit_widget_integration_test_sample
 
-Sample test flutter project (Unit test, Widget test anad Integration test)
+Sample test flutter project (Unit test, Widget test and Integration test)
 
 ## Getting Started
 
