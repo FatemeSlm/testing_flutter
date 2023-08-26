@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:unit_widget_integration_test_sample/home/home_screen.dart';
 import 'package:unit_widget_integration_test_sample/validator.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -44,11 +45,15 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(onPressed: () {
-                if(formKey.currentState!.validate()){
-
-                }
-              }, child: const Text('Login')),
+              ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ));
+                    }
+                  },
+                  child: const Text('Login')),
             ],
           ),
         ),
