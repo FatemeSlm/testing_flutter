@@ -8,9 +8,78 @@ void main() {
     IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
     testWidgets(
-        'should show home screen after user tap on login '
-        'button after entering valid user name and password',
-        (WidgetTester tester) async{
+        'should show required filed message after user taps on login button '
+        'without entering user email and password', (tester) async {
+      //arrange
+      await tester.pumpWidget(const MaterialApp(
+        home: LoginScreen(),
+      ));
+
+      // act
+      Finder loginButton = find.byType(ElevatedButton);
+      await tester.tap(loginButton);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+
+      Finder errorMassages = find.text('Required Filed');
+
+      //assert
+      expect(errorMassages, findsNWidgets(2));
+    });
+
+    testWidgets(
+        'should show invalid email error message after user taps on login'
+        'button after entering an invalid email', (WidgetTester tester) async {
+      //arrange
+      await tester.pumpWidget(const MaterialApp(
+        home: LoginScreen(),
+      ));
+
+      // act
+      Finder emailTextField = find.byKey(const ValueKey('emailId'));
+      await tester.enterText(emailTextField, 'abcdef');
+      await tester.pump(const Duration(seconds: 2));
+
+      Finder loginButton = find.byType(ElevatedButton);
+      await tester.tap(loginButton);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+
+      Finder invalidEmailText = find.text('Please enter a valid email');
+      await tester.pump(const Duration(seconds: 2));
+
+      // assert
+      expect(invalidEmailText, findsOneWidget);
+    });
+
+    testWidgets(
+        'should show invalid password error message after user taps on login '
+        'button after entering an invalid password',
+        (WidgetTester tester) async {
+      //arrange
+      await tester.pumpWidget(const MaterialApp(
+        home: LoginScreen(),
+      ));
+
+      // act
+      Finder passwordTextField = find.byKey(const ValueKey('password'));
+      await tester.enterText(passwordTextField, 'abc');
+      await tester.pump(const Duration(seconds: 2));
+
+      Finder loginButton = find.byType(ElevatedButton);
+      await tester.tap(loginButton);
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+
+      Finder invalidPasswordText =
+          find.text('Please Enter at least 8 character for password');
+      await tester.pump(const Duration(seconds: 2));
+
+      // assert
+      expect(invalidPasswordText, findsOneWidget);
+    });
+
+    testWidgets(
+        'should show home screen after user taps on login '
+        'button after entering valid user email and password',
+        (WidgetTester tester) async {
       //arrange
       await tester.pumpWidget(const MaterialApp(
         home: LoginScreen(),
@@ -27,11 +96,10 @@ void main() {
 
       Finder loginButton = find.byType(ElevatedButton);
       await tester.tap(loginButton);
-      await tester.pumpAndSettle();
-      await tester.pump(const Duration(seconds: 2));
+      await tester.pumpAndSettle(const Duration(seconds: 2));
 
       Finder homeText = find.byKey(const ValueKey('welcome'));
-      await tester.pump(const Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 2));
 
       // assert
       expect(homeText, findsOneWidget);
