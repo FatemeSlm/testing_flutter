@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:unit_widget_integration_test_sample/login/login_screen.dart';
+import 'package:unit_widget_integration_test_sample/screens/login/login_screen.dart';
 
 void main() {
   group('login flow test', () {
@@ -98,11 +98,11 @@ void main() {
       await tester.tap(loginButton);
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
-      Finder homeText = find.byKey(const ValueKey('welcome'));
+      Finder text = find.text('News');
       await tester.pump(const Duration(seconds: 2));
 
       // assert
-      expect(homeText, findsOneWidget);
+      expect(text, findsOneWidget);
     });
   });
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:unit_widget_integration_test_sample/home/home_screen.dart';
 import 'package:unit_widget_integration_test_sample/validator.dart';
+
+import '../news/news_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => const NewsScreen(),
                       ));
                     }
                   },

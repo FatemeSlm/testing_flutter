@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:unit_widget_integration_test_sample/login/login_screen.dart';
+import 'package:unit_widget_integration_test_sample/screens/login/login_screen.dart';
 
 void main() {
   testWidgets('should have a title', (WidgetTester tester) async {
