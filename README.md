@@ -1,4 +1,4 @@
-# unit_widget_integration_test_sample
+# unit_widget_integration_test
 
 Sample test flutter project (Unit test, Widget test and Integration test)
 
